@@ -22,9 +22,21 @@
             h: window.innerHeight,
             draw: function (){
                 canvasCtx.fillStyle = "#286047"
-                canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+                canvasCtx.fillRect(0, 0, this.w, this.h)
             },
         }
+
+        const line = {
+            w: 15,
+            h: field.h,
+            draw: function (){
+                canvasCtx.fillStyle = "#FFFFFF"
+                canvasCtx.fillRect(field.w/2 - this.w/2, 0, this.w, this.h)
+
+            }
+        }
+
+        
 
         function setup() {
             canvasEl.width = field.w
@@ -34,16 +46,8 @@
 
         function draw () {
             field.draw()
+            line.draw()
 
-            canvasCtx.fillStyle = "#FFFFFF"
-            
-            //Building net
-            const xNet = window.innerWidth / 2 - lineWidth  / 2
-            const yNet = 0
-            const wNet = lineWidth
-            const hNet = window.innerHeight
-
-            canvasCtx.fillRect(xNet, yNet, wNet, hNet)
 
             //Building left racket
             const xLRacket = 10
