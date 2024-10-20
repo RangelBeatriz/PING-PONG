@@ -16,6 +16,8 @@
         canvasCtx = canvasEl.getContext("2d"),
         gapX = 10
 
+        const mouse = { x: 0, y: 0}
+
 
         const field = {
             w: window.innerWidth,
@@ -38,12 +40,17 @@
 
         const leftPaddle = {
             x: gapX,
-            y: 100,
+            y: 0,
             w: line.w,
             h: 200,
+            _move: function(){
+                this.y = mouse.y - this.h/2
+            },
             draw: function(){
                 canvasCtx.fillStyle = "#FFFFFF"
                 canvasCtx.fillRect(this.x, this.y, this.w, this.h)
+
+                this._move()
             }
 
         }
@@ -126,6 +133,11 @@
 
         setup()
         main()
+
+        canvasEl.addEventListener('mousemove', function(e) {
+            mouse.x = e.pageX
+            mouse.y = e.pageY
+        })
     </script>
 </body>
 </html>
